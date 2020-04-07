@@ -12,7 +12,7 @@ export class Directory extends React.Component{
                     title: 'hats',
                     imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
                     id: 1,
-                    linkUrl: 'shop/hats'
+                    linkUrl: 'hats'
                   },
                   {
                     title: 'jackets',
@@ -49,8 +49,8 @@ export class Directory extends React.Component{
     render(){
         return(
             <div className="dicrectory-menu">
-                {this.state.items.map(({title,id, imageUrl,size})=>(
-               <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+                {this.state.items.map(({id,...Othersections})=>(
+               <MenuItem key={id} {...Othersections} />
                 ))
 
                 }
