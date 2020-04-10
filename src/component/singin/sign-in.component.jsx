@@ -2,7 +2,7 @@ import React from 'react';
 import './sign-in.styles.scss';
 import InputForm from './../../component/form-input/form-input.component';
 import ButtonSub from './../../component/button/button.component';
-import {signInWithGoogle} from '../../firebase/firebase.utilits'
+import {signInWithGoogle, auth} from '../../firebase/firebase.utilits'
 
 
 export class SignIn extends React.Component{
@@ -17,14 +17,21 @@ export class SignIn extends React.Component{
        
         
     }
-    handleSubmit= event=>{
+    handleSubmit=async event=>{
         event.preventDefault();
-        this.setState({email:'',password:''})
+        const {email,password}=this.state;
+        try {
+          await auth.signInWithEmailAndPassword(email,password)
+            this.setState({email:'',password:''})
+        } catch (error) {
+console.log(error)
+        }
+        
     }
     
     handlechange=event=>{
         const {value,name}=event.target;
-        this.setState({[value]:name})
+        this.setState({[name]:value})
     }
     render(){
 
@@ -32,12 +39,15 @@ export class SignIn extends React.Component{
 
             <div className="sign-in">
                 <h1>Already have account SignIn</h1>
-                <span>Signin here with email and password</span>
+                <span className="title">Signin here with email and password</span>
                 <form onSubmit={this.handleSubmit}>
                     <InputForm type="email" name="email" value={this.state.email} required
                     handleChange={this.handlechange}
               lable="email"
+            
                     />
+                    
+                    
                     {/* <label>Email</label> */}
 
                     <InputForm type="password" name="password" value={this.state.password} 
@@ -45,11 +55,14 @@ export class SignIn extends React.Component{
                     lable="password"
                     required/>
                     {/* <label>password</label> */}
-                    <ButtonSub type="submit" >SignIn</ButtonSub>
-                    <ButtonSub onClick={signInWithGoogle} >
+                    <div className="button">
+                        <ButtonSub type="submit" >SignIn</ButtonSub>
+                    <ButtonSub onClick={signInWithGoogle} GoogleSignin >
                         {''}
                         Signin  with Google{''}
                         </ButtonSub>
+                    </div>
+                    
 
                 </form>
                 

@@ -22,7 +22,7 @@ import {auth} from '../../firebase/firebase.utilits'
                     currentUser?
                     <div className="option" onClick={()=>auth.signOut()}>signOut</div>
                     :
-                    <Link className="option" to="/signin">singIn</Link>
+                    <Link className="option" to="/signin">SingIn</Link>
                 }
              </div>
             
