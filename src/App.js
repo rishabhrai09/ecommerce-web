@@ -9,8 +9,10 @@ import HeaderComponent from './component/header/header.component' ;
 import SignInSingnOut from './pages/sigin-sigout-pages/sign-in-signout.component';
 import {auth ,createUserProfileDocument} from './firebase/firebase.utilits';
 import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect'
 import {setCurrentUser} from './redux/user/user.actions'
-
+import { selectCartHidden} from '././redux/cart/cart.selectors';
+import {selecetCurrentUser} from '././redux/user/user.selectors'
 
 export class App extends React.Component {
  
@@ -62,8 +64,9 @@ export class App extends React.Component {
   }
  
   }
- const mapToStateprops=({user})=>({
-   currentUser:user.currentUser
+ const mapToStateprops=()=>createStructuredSelector({
+   currentUser:selecetCurrentUser,
+   hidden:selectCartHidden
  })
 
   const mapDispatchToProps=dispatch=>({
