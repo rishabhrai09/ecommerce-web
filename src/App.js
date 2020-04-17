@@ -8,7 +8,8 @@ import ShopPage from './pages/shopPage/shop.component' ;
 import HeaderComponent from './component/header/header.component' ;
 import SignInSingnOut from './pages/sigin-sigout-pages/sign-in-signout.component';
 import {auth ,createUserProfileDocument} from './firebase/firebase.utilits';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import CheckOut from './pages/checkoutPage/checkoutpage.component'
 import {createStructuredSelector} from 'reselect'
 import {setCurrentUser} from './redux/user/user.actions'
 import { selectCartHidden} from '././redux/cart/cart.selectors';
@@ -52,6 +53,9 @@ export class App extends React.Component {
       <Switch>
       <Route exact path="/" component={Homepage}/>
       <Route path="/shop" component={ShopPage}/>
+      <Route exact path="/checkout" component={CheckOut}/>
+
+
       <Route exact path="/signin" render={()=>this.props.currentUser?(<Redirect to="/" />):(<SignInSingnOut />)}/>
 
       </Switch>
