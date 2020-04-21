@@ -15,6 +15,11 @@ export const ShopSelectorsItems =createSelector(
     shop=>shop.collections
 );
 
+export const selectCollectionPreviwe =createSelector(
+  [ShopSelectorsItems],
+  collections=>Object.keys(collections).map(key=>collections[key])
+)
+
 export const SelectCollection=collectionUrlPrams=>createSelector(
   [ShopSelectorsItems],
   collections=>collections[collectionUrlPrams]
