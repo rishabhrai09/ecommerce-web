@@ -35,7 +35,7 @@ import StripCheckoutButton from '../../component/stripe-checkout/stripeCheckout.
              }
   <h1 className="total"> Total: &#x20B9;{total}</h1>
   <div className="test-warning">
-    "plese use this credit card number fot testing "
+    "please use this credit card number for testing "
 4242 4242 4242 4242 exp:11/07 CVV :123
   </div>
  <StripCheckoutButton   price={total}/>
