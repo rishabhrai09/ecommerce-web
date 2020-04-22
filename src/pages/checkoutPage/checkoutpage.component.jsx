@@ -33,12 +33,13 @@ import StripCheckoutButton from '../../component/stripe-checkout/stripeCheckout.
                  cartItems.map(cartItem=> 
                  <CheckOutItem key={cartItem.id} cartItem={cartItem}/>)
              }
-  <h1 className="total"> Total: &#x20B9;{total}</h1>
+  <h3 className="total"> Total: &#x20B9;{total}</h3>
   <div className="test-warning">
     "please use this credit card number for testing "
 4242 4242 4242 4242 exp:11/07 CVV :123
+<StripCheckoutButton   price={total}/>
   </div>
- <StripCheckoutButton   price={total}/>
+
      </div>
  )
  const mapStateToProps=createStructuredSelector({
