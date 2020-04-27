@@ -1,35 +1,35 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import './header.styles.scss'
+//import './header.styles.scss'
 import ShoppingCart from "./../cart-icon/cart-icon.component";
 import {ReactComponent as Logo} from '../../assest/crown.svg';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 import {auth} from '../../firebase/firebase.utilits';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {HeaderContainer,LogoContainer,OptionsContainer,LogoOption} from './header.styles'
  const headerComponent=({currentUser,hidden})=>(
      
-         <div className="header">
-             <Link className="logo-container" to="/">
+         <HeaderContainer className="header">
+             <LogoContainer className="logo-container" to="/">
              <Logo  className="logo"/>
-            </Link>
+            </LogoContainer>
          
-             <div className="options">
-              <Link className="option" to="/shop">
+             <OptionsContainer className="options">
+              <LogoOption className="option" to="/shop">
                        Shop
-                </Link>
-                <Link to="/shop">
+                </LogoOption>
+                <LogoOption  to="/shop">
                 Contant
-                </Link>
+                </LogoOption>
 
                 {
                     currentUser?
-                    <div className="option" onClick={()=>auth.signOut()}>signOut</div>
+                    <LogoOption as="div" className="option" onClick={()=>auth.signOut()}>signOut</LogoOption>
                     :
-                    <Link className="option" to="/signin">SingIn</Link>
+                    <LogoOption className="option" to="/signin">SingIn</LogoOption>
                 }
                 
          <ShoppingCart/>
-             </div>
+             </OptionsContainer>
              {    
              hidden?null:
              <CartDropdown/>
@@ -37,7 +37,7 @@ import {connect} from 'react-redux'
 
              }
          
-            </div>   
+            </HeaderContainer>   
     
  )
  const mapToStateProps= ({user:{currentUser},cart:{hidden}})=>({

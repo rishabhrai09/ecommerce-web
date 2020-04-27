@@ -10,12 +10,12 @@ export const ShopSelectorsItems =createSelector(
 
 export const selectCollectionPreviwe =createSelector(
   [ShopSelectorsItems],
-  collections=>Object.keys(collections).map(key=>collections[key])
+  collections=>collections? Object.keys(collections).map(key=>collections[key]):[]
 )
 
 export const SelectCollection=collectionUrlPrams=>createSelector(
   [ShopSelectorsItems],
-  collections=>collections[collectionUrlPrams]
+  collections=>(collections? collections[collectionUrlPrams]:null)
 //find(
 //       collection=>collection.id ===COLLECTION_ID_MAP[collectionUrlPrams])  
 ) 

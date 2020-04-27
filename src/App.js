@@ -13,7 +13,7 @@ import CheckOut from './pages/checkoutPage/checkoutpage.component'
 import {createStructuredSelector} from 'reselect'
 import {setCurrentUser} from './redux/user/user.actions'
 import { selectCartHidden} from '././redux/cart/cart.selectors';
-import {selecetCurrentUser} from '././redux/user/user.selectors'
+import {selecetCurrentUser} from '././redux/user/user.selectors';
 
 export class App extends React.Component {
  
@@ -70,7 +70,8 @@ export class App extends React.Component {
   }
  const mapToStateprops=()=>createStructuredSelector({
    currentUser:selecetCurrentUser,
-   hidden:selectCartHidden
+   hidden:selectCartHidden,
+   
  })
 
   const mapDispatchToProps=dispatch=>({
