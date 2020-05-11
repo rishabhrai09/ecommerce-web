@@ -7,13 +7,12 @@ import { Switch, Route, Redirect} from 'react-router-dom';
 import ShopPage from './pages/shopPage/shop.component' ;
 import HeaderComponent from './component/header/header.component' ;
 import SignInSingnOut from './pages/sigin-sigout-pages/sign-in-signout.component';
-import {auth ,createUserProfileDocument} from './firebase/firebase.utilits';
 import {connect} from 'react-redux';
 import CheckOut from './pages/checkoutPage/checkoutpage.component'
 import {createStructuredSelector} from 'reselect'
-import {setCurrentUser} from './redux/user/user.actions'
 import { selectCartHidden} from '././redux/cart/cart.selectors';
 import {selecetCurrentUser} from '././redux/user/user.selectors';
+import {checkUserSession} from './redux/user/user.actions'
 
 export class App extends React.Component {
  
@@ -21,24 +20,8 @@ export class App extends React.Component {
   unSuscribeAuth=null
   componentDidMount(){
 
-    const {setCurrentUser}=this.props
-    this.unSuscribeAuth= auth.onAuthStateChanged(async userAuth=>{
-      if(userAuth){
-        const userRef= await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapshot=>{
-          setCurrentUser({
-              id:snapshot.id,
-             ...snapshot.data()
-
-          })
-          
-         
-        })
-      }
-      else{
-        setCurrentUser(userAuth)
-      }
-    })
+  const {checkUserSession}=this.props
+  checkUserSession();
       
   }
 
@@ -68,14 +51,14 @@ export class App extends React.Component {
   }
  
   }
- const mapToStateprops=()=>createStructuredSelector({
+ const mapStateToprops=()=>createStructuredSelector({
    currentUser:selecetCurrentUser,
    hidden:selectCartHidden,
    
  })
 
-  const mapDispatchToProps=dispatch=>({
-    setCurrentUser:user=>dispatch(setCurrentUser(user))
-  })
 
-export default connect(mapToStateprops,mapDispatchToProps)(App);
+ const mapDispatchToprops =dispatch=>({
+   checkUserSession:()=>dispatch(checkUserSession())
+ })
+export default connect(mapStateToprops,mapDispatchToprops)(App);

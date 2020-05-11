@@ -19,3 +19,14 @@ export const SelectCollection=collectionUrlPrams=>createSelector(
 //find(
 //       collection=>collection.id ===COLLECTION_ID_MAP[collectionUrlPrams])  
 ) 
+
+
+export const selectIscollectionfetching=createSelector(
+  [shopSlector],
+  shop=>shop.isFatching
+)
+
+export const selectIsCollectionLoded=createSelector(
+  [shopSlector],
+  shop=> !!shop.collections
+)

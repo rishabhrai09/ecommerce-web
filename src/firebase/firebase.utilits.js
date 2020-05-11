@@ -34,6 +34,15 @@ if(!snapShot.exists){
 return userRef
 
 }
+export const getCurrentUser=()=>{
+    return new Promise((resolve,reject)=>{
+ const unSuscribe= auth.onAuthStateChanged(userAuth=>{
+     unSuscribe();
+     resolve(userAuth)
+ },reject
+ )
+    })
+}
 
 
 
@@ -69,9 +78,9 @@ export const auth = firebase.auth();
 export const firestore =firebase.firestore();
   
 
-const provider = new firebase.auth.GoogleAuthProvider();
+export const Googleprovider = new firebase.auth.GoogleAuthProvider();
 
-provider.setCustomParameters({prompt:'select_account'});
-export const signInWithGoogle=()=>auth.signInWithPopup(provider);
+Googleprovider.setCustomParameters({prompt:'select_account'});
+export const signInWithGoogle=()=>auth.signInWithPopup(Googleprovider);
 
 export default firebase

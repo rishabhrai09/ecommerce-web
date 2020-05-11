@@ -26,6 +26,7 @@ justify-content: flex-end;
 `;
 export const LogoOption=styled(Link)`
 padding: 10px 15px;
+cursor: pointer;
 
 `;
 
