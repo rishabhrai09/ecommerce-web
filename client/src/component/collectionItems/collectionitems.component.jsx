@@ -18,8 +18,8 @@ import {AddItem} from '../../redux/cart/cart.action';
    <span className="name">{name}</span>
    <span className="price">{price}</span>
 
-   </div>
-   <ButtonSub onClick={()=>AddItem(item)} inverted>ADD TO CART</ButtonSub>
+   </div >
+   <ButtonSub className="inverted custom-button" onClick={()=>AddItem(item)} inverted>ADD TO CART</ButtonSub>
      </div>
  )
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 import './App.css';
 import './pages/homepage/hompages.component'
@@ -14,22 +14,16 @@ import { selectCartHidden} from '././redux/cart/cart.selectors';
 import {selecetCurrentUser} from '././redux/user/user.selectors';
 import {checkUserSession} from './redux/user/user.actions'
 
-export class App extends React.Component {
+export const App =({checkUserSession,currentUser})=> {
  
+  useEffect(()=>{
+    checkUserSession()
+  },[checkUserSession])
   
-  unSuscribeAuth=null
-  componentDidMount(){
 
-  const {checkUserSession}=this.props
-  checkUserSession();
-      
-  }
+  
 
-  componentWillUnmount(){
-    this.unSuscribeAuth()
-  }
-
-  render(){
+  
     return(
         <div className="App">
       <HeaderComponent/>
@@ -39,7 +33,7 @@ export class App extends React.Component {
       <Route exact path="/checkout" component={CheckOut}/>
 
 
-      <Route exact path="/signin" render={()=>this.props.currentUser?(<Redirect to="/" />):(<SignInSingnOut />)}/>
+      <Route exact path="/signin" render={()=>currentUser?(<Redirect to="/" />):(<SignInSingnOut />)}/>
 
       </Switch>
       
@@ -48,8 +42,8 @@ export class App extends React.Component {
     </div>
     )
 
-  }
- 
+  
+
   }
  const mapStateToprops=()=>createStructuredSelector({
    currentUser:selecetCurrentUser,
