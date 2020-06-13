@@ -1,9 +1,9 @@
 {
   "name": "myreactapp",
   "version": "1.0.0",
-  "engine":{
-"node":"12.16.1",
-"npm":"6.13.4"
+  "engine": {
+    "node": "12.16.1",
+    "npm": "6.13.4"
   },
   "scripts": {
     "client": "cd client && npm start",
